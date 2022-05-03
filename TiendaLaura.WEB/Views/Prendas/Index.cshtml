@@ -1,0 +1,81 @@
+﻿@model IEnumerable<TiendaLaura.Business.DTOs.PrendaDetalleDto>
+@*@section Styles{
+
+}*@
+
+<div class="content">
+    <div class="container-fluid">
+
+           
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h2>Gestión de <b>@ViewBag.Titulo</b></h2>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                      
+                        <div class="">
+                            <a onclick="mostrarModal('@Url.Action("Crear","Prendas",null,Context.Request.Scheme)','Nueva prenda')" class="btn btn-success"><i class="fas fa-plus-circle"></i> <span>Nueva prenda</span></a>
+                           @* <a asp-action="Crear"  class="btn btn-success"> Nueva prenda</a>*@
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+
+                @if (Model.Count() == 0)
+                {
+                    <p>No existen Prendas</p>
+                }
+                else
+                {
+                     <table class="table table-striped custom-table table-bordered table-hover" id="tabla">
+                        <thead class="thead-dark text-black">
+                            <tr class="">                                
+                                <th scope="col" class="text-center">Nombre</th>
+                                <th scope="col" class="text-center">Tipo</th>
+                                <th scope="col" class="text-center">Color</th>
+                                <th scope="col" class="text-center">Estado</th>
+                                <th scope="col" class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var prenda in Model)
+                            {
+                                    <tr>
+                                        <td>@prenda.NombrePrenda</td>
+                                        <td>@prenda.TipoPrenda</td>
+                                        <td>@prenda.Color</td>
+                            <td>@if (prenda.Estado.Value)
+                                {
+                                    <p> Habilitado</p>
+
+                                }
+                                else
+                                {
+                                     <p> Deshabilitado</p>
+                                    
+                                }
+
+
+                                            
+                                        </td>
+                                        <td></td>
+                                    </tr>                              
+                                   
+                            }
+
+                        </tbody>
+                    </table>
+
+                   
+                }
+    </div>
+       
+   
+</div>
+
+
+
